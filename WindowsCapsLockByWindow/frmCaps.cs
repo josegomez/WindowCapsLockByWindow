@@ -47,6 +47,10 @@ namespace BrandonIsAWhinyBitch
         [DllImport("user32.dll")]
         static extern IntPtr GetForegroundWindow();
 
+
+        [DllImport("user32.dll")]
+        static extern IntPtr GetParent(IntPtr hWnd);
+
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
@@ -66,11 +70,29 @@ namespace BrandonIsAWhinyBitch
             return null;
         }
 
+        private string GetActiveWindowTitle(IntPtr handle)
+        {
+            const int nChars = 256;
+           
+            StringBuilder Buff = new StringBuilder(nChars);
+           
+
+            if (GetWindowText(handle, Buff, nChars) > 0)
+            {
+                return Buff.ToString();
+            }
+            return null;
+        }
+
         public void WinEventProc(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
             string WindowTitle = GetActiveWindowTitle()?.Trim();
             if (WindowTitle == null)
                 WindowTitle = "";
+            if(WindowTitle.Trim().ToUpper().Equals("SAVE AS"))
+            {
+                WindowTitle = GetActiveWindowTitle(GetParent(GetForegroundWindow()));
+            }
 
 
             if (!chkListWindows.Items.Contains(WindowTitle))
@@ -88,13 +110,14 @@ namespace BrandonIsAWhinyBitch
                     chkListWindows.Items.Add(WindowTitle, capsOn);
                 }
             }
-            
-            
-                if(Keyboard.GetKeyStates(Key.CapsLock) == KeyStates.Toggled)
+
+            if (!string.IsNullOrEmpty(WindowTitle))
+            {
+                if (Keyboard.GetKeyStates(Key.CapsLock) == KeyStates.Toggled)
                 {
-                    if(!chkListWindows.CheckedItems.Contains(WindowTitle))
+                    if (!chkListWindows.CheckedItems.Contains(WindowTitle))
                     {
-                            ToggleCapsLock();
+                        ToggleCapsLock();
                     }
                 }
                 else
@@ -102,6 +125,7 @@ namespace BrandonIsAWhinyBitch
                     if (chkListWindows.CheckedItems.Contains(WindowTitle))
                         ToggleCapsLock();
                 }
+            }
             
         }
 
