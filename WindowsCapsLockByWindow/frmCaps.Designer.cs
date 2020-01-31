@@ -36,6 +36,9 @@
             // 
             // chkListWindows
             // 
+            this.chkListWindows.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chkListWindows.FormattingEnabled = true;
             this.chkListWindows.Location = new System.Drawing.Point(12, 12);
             this.chkListWindows.Name = "chkListWindows";
@@ -45,6 +48,7 @@
             // 
             // txtContains
             // 
+            this.txtContains.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContains.Location = new System.Drawing.Point(257, 38);
             this.txtContains.Name = "txtContains";
             this.txtContains.Size = new System.Drawing.Size(288, 20);
@@ -52,6 +56,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(257, 19);
             this.label1.Name = "label1";
@@ -61,6 +66,7 @@
             // 
             // btnClear
             // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClear.Location = new System.Drawing.Point(234, 308);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
