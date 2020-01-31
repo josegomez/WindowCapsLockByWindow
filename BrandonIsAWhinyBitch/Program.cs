@@ -16,7 +16,7 @@ namespace BrandonIsAWhinyBitch
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCaps());
+            Application.Run(new frmCaps()); 
         }
     }
 }
